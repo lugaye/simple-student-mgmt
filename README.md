@@ -1,5 +1,25 @@
+# I COMMENTED OUT THE MYSQL LINES THEN ADDED MYSQLITE3 AND TESTED IT ON KALI LINUX
+
 # simple-student-mgmt
 ## 1. Setup MySQL Database:
+
+#mariaDB COMMANDS
+sudo mysql -u root = start mariadb
+sudo systemctl status mariadb
+sudo systemctl start mariadb
+sudo systemctl restart mariadb
+sudo systemctl enable mariadb
+
+
+#CREATE DATABASE database_name;
+#SHOW DATABASES;
+#USE database_name;
+#SHOW TABLES;
+#DESCRIBE table_name;
+
+#sudo netstat -tuln | grep 3306
+#sudo lsof -i:3306
+#sudo kill 737026
 
 First, create a MySQL database named student_management_system.
 ```bash
@@ -58,3 +78,40 @@ node server.js
 ```
 
 Now, you can access your student management system by opening http://localhost:3000 in your web browser.
+
+
+sudo netstat -tuln | grep 3306
+sudo lsof -i:3306
+sudo kill 737026
+
+sudo apt update
+sudo apt install nodejs
+
+npm -v
+
+
+mkdir my-node-project
+cd my-node-project
+
+npm init
+
+
+npm install express
+
+
+const express = require('express');
+const app = express();
+const port = 3000;
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+app.listen(port, () => {
+    console.log(`Server is listening at http://localhost:${port}`);
+});
+
+
+node app.js
+
+
+
+
