@@ -8,7 +8,7 @@ const port = 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'password', // Change to your MySQL password
+    password: '', // Change to your MySQL password
     database: 'student_management_system'
 });
 
@@ -17,14 +17,31 @@ db.connect((err) => {
     console.log('MySQL connected');
 });
 
+// Serve static files from the default directory
+app.use(express.static(__dirname));
+
+// Set up middleware to parse incoming JSON data
+app.use(express.json());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.post('/addStudent', (req, res) => {
+    // Extract student data from the request body
     const { name, age, grade } = req.body;
+
+    // SQL query to insert a new student record into the database
     const sql = 'INSERT INTO students (name, age, grade) VALUES (?, ?, ?)';
+    
+    // Execute the SQL query with the student data
     db.query(sql, [name, age, grade], (err, result) => {
-        if (err) throw err;
-        res.send('Student added successfully');
+        if (err) {
+            console.error('Error adding student:', err);
+            res.status(500).send('Error adding student to the database');
+            return;
+        }
+        console.log('Student added successfully');
+        res.status(200).send('Student added successfully');
     });
 });
 
