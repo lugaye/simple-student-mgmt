@@ -1,7 +1,12 @@
 # simple-student-mgmt
 ## 1. Setup MySQL Database:
 
-First, create a MySQL database named student_management_system with a table named students having the following fields:
+First, create a MySQL database named student_management_system.
+```bash
+CREATE DATABASE student_management_system;
+```
+
+Create a table named students having the following fields:
 ```bash
     id (INT, AUTO_INCREMENT, PRIMARY KEY)
     name (VARCHAR)
